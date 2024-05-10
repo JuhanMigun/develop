@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: my-pv
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteMany
+  storageClassName: efs-sc    
+  nfs:
+    server: fs-0878a430185b7f80e.efs.ap-northeast-2.amazonaws.com
+    path: /dynamic_provisioning/pvc-b23beb0e-7a5e-492b-a0db-ca74f87c8a09
