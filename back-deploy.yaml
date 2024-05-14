@@ -21,8 +21,8 @@ spec:
           protocol: TCP
         volumeMounts: # 생성한 볼륨 마운트
         - name: my-pv
-          #mountPath: /usr/local/tomcat/webapps/ROOT/data/
-          mountPath: /usr/share
+          mountPath: /usr/local/tomcat/webapps/ROOT/data/
+          #mountPath: /usr/share
         resources:
           requests:
             cpu: 200m
