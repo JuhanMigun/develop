@@ -19,7 +19,7 @@ spec:
         #image: public.ecr.aws/f2d8b1j8/jslee:latest
         #image:  891377163278.dkr.ecr.ap-northeast-2.amazonaws.com/kimjuhan-basic-web:nginx-web
         #image: 891377163278.dkr.ecr.ap-northeast-2.amazonaws.com/develop-web:nginx-developing
-        image: 891377163278.dkr.ecr.ap-northeast-2.amazonaws.com/exit-develop-web:exit-web
+        image: 891377163278.dkr.ecr.ap-northeast-2.amazonaws.com/exit-develop-web:config-nginx
         ports:
         - containerPort: 80
           protocol : TCP
