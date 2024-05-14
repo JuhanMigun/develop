@@ -18,7 +18,7 @@ spec:
       - name: front-app
         #image: public.ecr.aws/f2d8b1j8/jslee:latest
         #image:  891377163278.dkr.ecr.ap-northeast-2.amazonaws.com/kimjuhan-basic-web:nginx-web
-        image: 891377163278.dkr.ecr.ap-northeast-2.amazonaws.com/external-web:nginx2
+        image: 891377163278.dkr.ecr.ap-northeast-2.amazonaws.com/develop-web:develop-nginx
         ports:
         - containerPort: 80
           protocol : TCP
