@@ -1,0 +1,16 @@
+controller:
+  image:
+    tag: "kjh-jdk11"
+  testEnabled: false
+  serviceType: LoadBalancer
+  installPlugins:
+    - kubernetes
+    - workflow-aggregator
+    - git
+    - configuration-as-code
+    - pipeline-stage-view
+  admin:
+    password: "admin2401"
+persistence:
+  storageClass: "gp2"  # EFS 스토리지 사용
+

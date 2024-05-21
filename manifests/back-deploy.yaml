@@ -15,14 +15,15 @@ spec:
     spec:
       containers:
       - name: back-app
-        image: 891377163278.dkr.ecr.ap-northeast-2.amazonaws.com/kimjuhan-basic-was:tomcat-was
+        image: 891377163278.dkr.ecr.ap-northeast-2.amazonaws.com/develop-was:view-tomcat
+        #image: 891377163278.dkr.ecr.ap-northeast-2.amazonaws.com/exit-develop-was:exit-was
         ports:
         - containerPort: 8080
           protocol: TCP
         volumeMounts: # 생성한 볼륨 마운트
         - name: my-pv
-          #mountPath: /usr/local/tomcat/webapps/ROOT/data/
-          mountPath: /usr/share
+          mountPath: /usr/local/tomcat/webapps/ROOT/data/
+          #mountPath: /usr/share
         resources:
           requests:
             cpu: 200m
