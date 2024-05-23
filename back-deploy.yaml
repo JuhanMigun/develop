@@ -15,7 +15,8 @@ spec:
     spec:
       containers:
       - name: back-app
-        image: 891377163278.dkr.ecr.ap-northeast-2.amazonaws.com/develop-was:view-tomcat
+        image: 891377163278.dkr.ecr.ap-northeast-2.amazonaws.com/mydata-was:tomcat
+        #image: 891377163278.dkr.ecr.ap-northeast-2.amazonaws.com/develop-was:view-tomcat
         #image: 891377163278.dkr.ecr.ap-northeast-2.amazonaws.com/exit-develop-was:exit-was
         ports:
         - containerPort: 8080
