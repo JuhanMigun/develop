@@ -29,17 +29,32 @@ spec:
           requests:
             cpu: 200m
             memory: 200M
+      - name: fluentd
+        image: fluent/fluentd:v1.11.5
+        env:
+        - name: FLUENTD_CONF
+          value: "fluentd.conf"
+        volumeMounts:
+        - name: varlog
+          mountPath: /var/log
+        - name: config-volume
+          mountPath: /fluentd/etc
       volumes: # 위에서 생성한 PVC를 이용하여 볼륨 생성
       - name: my-pv
         persistentVolumeClaim:
           claimName: efs-pvc
-    #   affinity:
-    #     podAntiAffinity:
-    #       requiredDuringSchedulingIgnoredDuringExecution:
-    #       - labelSelector:
-    #           matchExpressions:
-    #           - key: tier
-    #             operator: In
-    #             values:
-    #             - backend
-    #         topologyKey: "kubernetes.io/hostname"
+      - name: varlog
+        emptyDir: {}
+      - name: config-volume
+        configMap:
+          name: fluentd-config
+      # affinity:
+      #   podAntiAffinity:
+      #     requiredDuringSchedulingIgnoredDuringExecution:
+      #     - labelSelector:
+      #         matchExpressions:
+      #         - key: tier
+      #           operator: In
+      #           values:
+      #           - backend
+      #       topologyKey: "kubernetes.io/hostname"
