@@ -21,18 +21,18 @@ spec:
         ports:
         - containerPort: 8080
           protocol: TCP
-      #   volumeMounts: # 생성한 볼륨 마운트
-      #   - name: my-pv
-      #     mountPath: /usr/local/tomcat/webapps/ROOT/data/
-      #     #mountPath: /usr/share
-      #   resources:
-      #     requests:
-      #       cpu: 200m
-      #       memory: 200M
-      # volumes: # 위에서 생성한 PVC를 이용하여 볼륨 생성
-      # - name: my-pv
-      #   persistentVolumeClaim:
-      #     claimName: efs-pvc
+        volumeMounts: # 생성한 볼륨 마운트
+        - name: my-pv
+          mountPath: /usr/local/tomcat/webapps/ROOT/data/
+          #mountPath: /usr/share
+        resources:
+          requests:
+            cpu: 200m
+            memory: 200M
+      volumes: # 위에서 생성한 PVC를 이용하여 볼륨 생성
+      - name: my-pv
+        persistentVolumeClaim:
+          claimName: efs-pvc
     #   affinity:
     #     podAntiAffinity:
     #       requiredDuringSchedulingIgnoredDuringExecution:
