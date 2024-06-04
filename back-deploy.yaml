@@ -15,30 +15,44 @@ spec:
     spec:
       containers:
       - name: back-app
-        #image: 891377163278.dkr.ecr.ap-northeast-2.amazonaws.com/mydata-was:lib-tomcat
         image: 891377163278.dkr.ecr.ap-northeast-2.amazonaws.com/mydata-was:nothing-log-tomcat
         ports:
         - containerPort: 8080
           protocol: TCP
-        volumeMounts: # 생성한 볼륨 마운트
+        volumeMounts:
         - name: my-pv
           mountPath: /usr/local/tomcat/webapps/ROOT/data/
-          #mountPath: /usr/share
+        - name: tomcat-logs
+          mountPath: /usr/local/tomcat/logs
         resources:
           requests:
             cpu: 200m
             memory: 200M
-      volumes: # 위에서 생성한 PVC를 이용하여 볼륨 생성
+      - name: sidecar-access
+        image: docker.elastic.co/beats/filebeat:7.16.2
+        imagePullPolicy: Never
+        volumeMounts:
+        - name: tomcat-logs
+          mountPath: /usr/local/tomcat/logs
+        - name: filebeat-config
+          mountPath: /usr/share/filebeat/filebeat.yml
+          subPath: filebeat.yml
+      volumes:
       - name: my-pv
         persistentVolumeClaim:
           claimName: efs-pvc
-    #   affinity:
-    #     podAntiAffinity:
-    #       requiredDuringSchedulingIgnoredDuringExecution:
-    #       - labelSelector:
-    #           matchExpressions:
-    #           - key: tier
-    #             operator: In
-    #             values:
-    #             - backend
-    #         topologyKey: "kubernetes.io/hostname"
+      - name: tomcat-logs
+        emptyDir: {}
+      - name: filebeat-config
+        configMap:
+          name: filebeat-config
+    # affinity:
+    #   podAntiAffinity:
+    #     requiredDuringSchedulingIgnoredDuringExecution:
+    #     - labelSelector:
+    #         matchExpressions:
+    #         - key: tier
+    #           operator: In
+    #           values:
+    #           - backend
+    #       topologyKey: "kubernetes.io/hostname"
