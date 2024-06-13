@@ -23,22 +23,22 @@ spec:
         ports:
         - containerPort: 80
           protocol : TCP
-      affinity:
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: tier
-                operator: In
-                values:
-                - frontend-user
-            topologyKey: "kubernetes.io/hostname"
-        podAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: tier
-                operator: In
-                values:
-                - backend
-            topologyKey: "kubernetes.io/hostname"
+    #   affinity:
+    #     podAntiAffinity:
+    #       requiredDuringSchedulingIgnoredDuringExecution:
+    #       - labelSelector:
+    #           matchExpressions:
+    #           - key: tier
+    #             operator: In
+    #             values:
+    #             - frontend-user
+    #         topologyKey: "kubernetes.io/hostname"
+    #     podAffinity:
+    #       requiredDuringSchedulingIgnoredDuringExecution:
+    #       - labelSelector:
+    #           matchExpressions:
+    #           - key: tier
+    #             operator: In
+    #             values:
+    #             - backend
+    #         topologyKey: "kubernetes.io/hostname"
