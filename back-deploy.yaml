@@ -47,13 +47,13 @@ spec:
       - name: filebeat-config
         configMap:
           name: filebeat-config
-    # affinity:
-    #   podAntiAffinity:
-    #     requiredDuringSchedulingIgnoredDuringExecution:
-    #     - labelSelector:
-    #         matchExpressions:
-    #         - key: tier
-    #           operator: In
-    #           values:
-    #           - backend
-    #       topologyKey: "kubernetes.io/hostname"
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+            matchExpressions:
+            - key: tier
+              operator: In
+              values:
+              - backend
+          topologyKey: "kubernetes.io/hostname"
