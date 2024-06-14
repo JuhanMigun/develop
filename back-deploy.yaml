@@ -28,28 +28,28 @@ spec:
           requests:
             cpu: 200m
             memory: 200Mi
-      - name: sidecar-access
-        image: docker.elastic.co/beats/filebeat:7.16.2
-        imagePullPolicy: IfNotPresent
-        resources:
-          requests:
-            cpu: 100m
-            memory: 100Mi
-        volumeMounts:
-        - name: tomcat-logs
-          mountPath: /usr/local/tomcat/logs
-        - name: filebeat-config
-          mountPath: /usr/share/filebeat/filebeat.yml
-          subPath: filebeat.yml
+      # - name: sidecar-access
+      #   image: docker.elastic.co/beats/filebeat:7.16.2
+      #   imagePullPolicy: IfNotPresent
+      #   resources:
+      #     requests:
+      #       cpu: 100m
+      #       memory: 100Mi
+      #   volumeMounts:
+      #   - name: tomcat-logs
+      #     mountPath: /usr/local/tomcat/logs
+      #   - name: filebeat-config
+      #     mountPath: /usr/share/filebeat/filebeat.yml
+      #     subPath: filebeat.yml
       volumes:
       - name: my-pv
         persistentVolumeClaim:
           claimName: efs-pvc
       - name: tomcat-logs
         emptyDir: {}
-      - name: filebeat-config
-        configMap:
-          name: filebeat-config
+      # - name: filebeat-config
+      #   configMap:
+      #     name: filebeat-config
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
