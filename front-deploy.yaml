@@ -31,7 +31,7 @@ spec:
               - key: tier
                 operator: In
                 values:
-                - frontend-user
+                - frontend
             topologyKey: "kubernetes.io/hostname"
         podAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
