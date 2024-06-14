@@ -16,7 +16,6 @@ spec:
       containers:
       - name: back-app
         image: 891377163278.dkr.ecr.ap-northeast-2.amazonaws.com/mydata-was:nothing-log-tomcat
-        #image: 891377163278.dkr.ecr.ap-northeast-2.amazonaws.com/mydata-was:cloudfrontwas
         ports:
         - containerPort: 8080
           protocol: TCP
@@ -28,10 +27,14 @@ spec:
         resources:
           requests:
             cpu: 200m
-            memory: 200M
+            memory: 200Mi
       - name: sidecar-access
         image: docker.elastic.co/beats/filebeat:7.16.2
         imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
         volumeMounts:
         - name: tomcat-logs
           mountPath: /usr/local/tomcat/logs
